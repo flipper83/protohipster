@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/gap_single"
+    android:paddingTop="@dimen/gap_single"
+    android:paddingBottom="@dimen/gap_single"
+    android:paddingRight="@dimen/gap_single_right"
+    >
+
+    <ImageView
+        android:id="@+id/hipster_avatar"
+        android:layout_width="@dimen/avatar_size"
+        android:layout_height="@dimen/avatar_size" />
+
+    <TextView
+        android:id="@+id/hipster_name"
+        style="@style/NameTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/gap_single"
+        android:layout_toRightOf="@id/hipster_avatar"
+        android:maxLines="1" />
+
+    <com.beardedhen.androidbootstrap.FontAwesomeText
+        android:id="@+id/b_heart"
+        style="@style/heartButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        fontawesometext:fa_icon="fa-heart"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:textSize="28sp"
+        />
+
+    <LinearLayout
+        android:id="@+id/ll_stars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hipster_name"
+        android:layout_marginLeft="@dimen/gap_single"
+        android:layout_toRightOf="@id/hipster_avatar">
+
+        <com.beardedhen.androidbootstrap.FontAwesomeText
+            android:id="@+id/star1"
+            style="@style/heartRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fontawesometext:fa_icon="fa-heart"
+            android:textSize="15sp"
+
+            />
+
+        <com.beardedhen.androidbootstrap.FontAwesomeText
+            android:id="@+id/star2"
+            style="@style/heartRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fontawesometext:fa_icon="fa-heart"
+            android:textSize="15sp"
+            />
+
+        <com.beardedhen.androidbootstrap.FontAwesomeText
+            android:id="@+id/star3"
+            style="@style/heartRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fontawesometext:fa_icon="fa-heart"
+            android:textSize="15sp"
+            />
+
+        <com.beardedhen.androidbootstrap.FontAwesomeText
+            android:id="@+id/star4"
+            style="@style/heartRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fontawesometext:fa_icon="fa-heart"
+            android:textSize="15sp"
+            />
+
+        <com.beardedhen.androidbootstrap.FontAwesomeText
+            android:id="@+id/star5"
+            style="@style/heartRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fontawesometext:fa_icon="fa-heart"
+            android:textSize="15sp"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
