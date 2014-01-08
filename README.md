@@ -1,4 +1,4 @@
 protohipster
 ============
 
-This is an small example about use clean architecture on Android development. 
+this is a small example that uses clean architecture on Android development
