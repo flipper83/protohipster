@@ -1,5 +1,6 @@
 package com.flipper83.protohipster.feed.datasource.api.call.rest.request;
 
+import com.flipper83.protohipster.feed.datasource.api.call.rest.GetFeedCall;
 import com.flipper83.protohipster.feed.datasource.api.call.rest.response.GetFeedResponse;
 
 import retrofit.http.GET;
@@ -19,4 +20,5 @@ public interface GetFeedRequest {
     @GET("/")
     void getRandomUsers(@Query("results") int maxUsers,@Query("seed") int page,
                         Callback<GetFeedResponse> callback);
+
 }

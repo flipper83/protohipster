@@ -18,7 +18,7 @@ import retrofit.client.Response;
  * Api Call to request
  */
 public class GetFeedCall extends ApiRestCall implements Callback<GetFeedResponse> {
-    private static final int MAX_USERS = 20;
+    private static final int MAX_USERS = 5;
     private static final String LOGTAG = "GetFeedCall";
     private List<UserApiEntry> responseBuffer = new ArrayList<UserApiEntry>();
     private GetFeedRequest request;
@@ -34,16 +34,16 @@ public class GetFeedCall extends ApiRestCall implements Callback<GetFeedResponse
         responseBuffer.clear();
 
         request = restAdapter.create(GetFeedRequest.class);
-        request.getRandomUsers(MAX_USERS,page, this);
+        request.getRandomUsers(MAX_USERS, page, this);
     }
 
     @Override
     public void success(GetFeedResponse apiUsers, Response response) {
         responseBuffer.addAll(apiUsers.getResults());
-        if(responseBuffer.size() >= MAX_USERS){
+        if (responseBuffer.size() >= MAX_USERS) {
             super.responseCallback.complete(responseBuffer);
-        }else{
-            page ++;
+        } else {
+            page++;
             request.getRandomUsers(MAX_USERS, page, this);
         }
     }

@@ -8,10 +8,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.flipper83.protohipster.R;
-import com.flipper83.protohipster.uibase.base.BaseFragment;
+import com.flipper83.protohipster.feed.view.provider.FeedProvider;
 import com.flipper83.protohipster.feed.view.viewmodel.FeedViewModel;
 import com.flipper83.protohipster.feed.view.viewmodel.HipsterViewModel;
-import com.flipper83.protohipster.feed.view.provider.FeedProvider;
+import com.flipper83.protohipster.uibase.base.BaseFragment;
 import com.flipper83.protohipster.uibase.transformation.TransformationBuilder;
 import com.squareup.picasso.Picasso;
 
@@ -22,7 +22,7 @@ import javax.inject.Inject;
 import rx.Observer;
 import rx.Subscription;
 import rx.android.concurrency.AndroidSchedulers;
-import rx.concurrency.Schedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -131,20 +131,20 @@ public class HipsterListFragment extends BaseFragment {
 
     private Observer<? super List<HipsterViewModel>> observerPopulateFeed =
             new Observer<List<HipsterViewModel>>() {
-        @Override
-        public void onCompleted() {
+                @Override
+                public void onCompleted() {
 
-        }
+                }
 
-        @Override
-        public void onError(Throwable e) {
-            //TODO MANAGE ERRORS
-        }
+                @Override
+                public void onError(Throwable e) {
+                    //TODO MANAGE ERRORS
+                }
 
-        @Override
-        public void onNext(List<HipsterViewModel> args) {
-            refreshData();
-        }
-    };
+                @Override
+                public void onNext(List<HipsterViewModel> args) {
+                    refreshData();
+                }
+            };
 
 }
