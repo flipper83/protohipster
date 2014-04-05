@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.8.+'
+        classpath 'com.android.tools.build:gradle:0.9.+'
     }
 }
 apply plugin: 'android'
@@ -36,7 +36,7 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2+'
     compile 'com.squareup.dagger:dagger-compiler:1.1.0'
     compile 'com.squareup.dagger:dagger:1.1.0'
-    compile 'com.android.support:support-v4:18.0.+'
+    compile 'com.android.support:support-v4:19.0.+'
     compile 'com.squareup.retrofit:retrofit:1.2.+'
     compile 'com.netflix.rxjava:rxjava-android:0.+'
     compile 'com.netflix.rxjava:rxjava-core:0.+'
