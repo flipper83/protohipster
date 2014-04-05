@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.flipper83.protohipster.R;
 import com.flipper83.protohipster.feed.view.provider.FeedProvider;
+import com.flipper83.protohipster.feed.view.ui.callback.RefreshFeedCallback;
 import com.flipper83.protohipster.feed.view.viewmodel.FeedViewModel;
 import com.flipper83.protohipster.feed.view.viewmodel.HipsterViewModel;
 import com.flipper83.protohipster.uibase.base.BaseFragment;
@@ -18,11 +19,6 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import rx.Observer;
-import rx.Subscription;
-import rx.android.concurrency.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -40,8 +36,7 @@ public class HipsterListFragment extends BaseFragment {
     ListView listviewFeed;
     private FeedViewModel feed;
     private FeedAdapter feedAdapter;
-    private Subscription subscriptionFeed;
-    private Subscription subscriptionLike;
+
 
     public HipsterListFragment() {
 
@@ -63,10 +58,7 @@ public class HipsterListFragment extends BaseFragment {
         listviewFeed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                subscriptionLike = feed.likeHipster(pos)
-                        .subscribeOn(Schedulers.newThread())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(observerLike);
+                feed.likeHipster(pos, populateFeedCallback);
 
                 refreshData();
             }
@@ -81,10 +73,7 @@ public class HipsterListFragment extends BaseFragment {
 
         refreshData();
 
-        subscriptionFeed = feed.populateFeed()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observerPopulateFeed);
+        feed.populateFeed(populateFeedCallback);
 
 
     }
@@ -92,13 +81,6 @@ public class HipsterListFragment extends BaseFragment {
     @Override
     public void onPause() {
         super.onPause();
-        if (subscriptionFeed != null) {
-            subscriptionFeed.unsubscribe();
-        }
-
-        if (subscriptionLike != null) {
-            subscriptionLike.unsubscribe();
-        }
     }
 
     private void mapGUI(View rootView) {
@@ -117,38 +99,12 @@ public class HipsterListFragment extends BaseFragment {
         }
     }
 
-    private Observer<? super HipsterViewModel> observerLike = new Observer<HipsterViewModel>() {
+    private RefreshFeedCallback populateFeedCallback = new RefreshFeedCallback() {
         @Override
-        public void onCompleted() {
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            //TODO MANAGE ERRORS
-        }
-
-        @Override
-        public void onNext(HipsterViewModel args) {
+        public void refreshPopulated() {
             refreshData();
         }
     };
 
-    private Observer<? super List<HipsterViewModel>> observerPopulateFeed =
-            new Observer<List<HipsterViewModel>>() {
-                @Override
-                public void onCompleted() {
-
-                }
-
-                @Override
-                public void onError(Throwable e) {
-                    //TODO MANAGE ERRORS
-                }
-
-                @Override
-                public void onNext(List<HipsterViewModel> args) {
-                    refreshData();
-                }
-            };
 
 }

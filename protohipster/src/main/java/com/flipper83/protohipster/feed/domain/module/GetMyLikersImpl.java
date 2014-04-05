@@ -4,15 +4,11 @@ import com.flipper83.protohipster.feed.datasource.api.call.parse.response.GetLik
 import com.flipper83.protohipster.feed.datasource.interfaces.LikeDataSource;
 import com.flipper83.protohipster.feed.datasource.interfaces.callbacks.GetMyLikersCallback;
 import com.flipper83.protohipster.feed.domain.interactors.GetMyLikers;
+import com.flipper83.protohipster.feed.view.viewmodel.callback.GetMyLikersUiCallback;
 
 import java.util.List;
 
 import javax.inject.Inject;
-
-import rx.Observable;
-import rx.Observer;
-import rx.Subscription;
-import rx.subscriptions.Subscriptions;
 
 /**
  * this is an implementation for feed
@@ -21,6 +17,7 @@ class GetMyLikersImpl extends GetLikesResponse implements GetMyLikers {
 
 
     LikeDataSource likeDataSource;
+    private GetMyLikersUiCallback getMyLikersUiCallback;
 
 
     @Inject
@@ -29,21 +26,17 @@ class GetMyLikersImpl extends GetLikesResponse implements GetMyLikers {
     }
 
     @Override
-    public Observable<List<String>> getMyLikers() {
-        return Observable.create(new Observable.OnSubscribeFunc<List<String>>() {
+    public void getMyLikers(GetMyLikersUiCallback getMyLikersUiCallback) {
+        this.getMyLikersUiCallback = getMyLikersUiCallback;
+        likeDataSource.getMyLikers(getMyLikersCallback);
 
-            @Override
-            public Subscription onSubscribe(final Observer<? super List<String>> observer) {
-                likeDataSource.getMyLikers(new GetMyLikersCallback() {
-                    @Override
-                    public void myLikers(List<String> myLikers) {
-                        observer.onNext(myLikers);
-                        observer.onCompleted();
-                    }
-                });
-                return Subscriptions.empty();
-            }
-        });
     }
+
+    private GetMyLikersCallback getMyLikersCallback = new GetMyLikersCallback() {
+        @Override
+        public void myLikers(List<String> userIds) {
+            getMyLikersUiCallback.myLikersReady(userIds);
+        }
+    };
 
 }
