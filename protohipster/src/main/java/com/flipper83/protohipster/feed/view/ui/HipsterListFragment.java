@@ -92,9 +92,13 @@ public class HipsterListFragment extends BaseFragment {
     @Override
     public void onPause() {
         super.onPause();
+        if (subscriptionFeed != null) {
+            subscriptionFeed.unsubscribe();
+        }
 
-        subscriptionFeed.unsubscribe();
-        subscriptionLike.unsubscribe();
+        if (subscriptionLike != null) {
+            subscriptionLike.unsubscribe();
+        }
     }
 
     private void mapGUI(View rootView) {
