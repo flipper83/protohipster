@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.9.+'
+        classpath 'com.android.tools.build:gradle:1.1.0'
     }
 }
 apply plugin: 'android'
@@ -17,7 +17,7 @@ repositories {
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.0"
+    buildToolsVersion "19.1.0"
 
     defaultConfig {
         minSdkVersion 14
@@ -38,8 +38,8 @@ dependencies {
     compile 'com.squareup.dagger:dagger:1.1.0'
     compile 'com.android.support:support-v4:19.0.+'
     compile 'com.squareup.retrofit:retrofit:1.2.+'
-    compile 'com.netflix.rxjava:rxjava-android:0.+'
-    compile 'com.netflix.rxjava:rxjava-core:0.+'
+    compile 'com.netflix.rxjava:rxjava-android:0.16.0'
+    compile 'com.netflix.rxjava:rxjava-core:0.16.0'
     compile ':AndroidBootstrap@aar'
     compile files('lib/Parse-1.3.8.jar')
 }
