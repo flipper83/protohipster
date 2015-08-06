@@ -7,7 +7,7 @@ public class UserApi {
 
     private UserApiName name;
     private String email;
-    private String picture;
+    private UserApiPicture picture;
 
     public UserApiName getName() {
         return name;
@@ -17,7 +17,7 @@ public class UserApi {
         return email;
     }
 
-    public String getPicture() {
+    public UserApiPicture getPicture() {
         return picture;
     }
 }
