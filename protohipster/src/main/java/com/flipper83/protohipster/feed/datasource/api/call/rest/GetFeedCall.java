@@ -51,6 +51,6 @@ public class GetFeedCall extends ApiRestCall implements Callback<GetFeedResponse
     @Override
     public void failure(RetrofitError retrofitError) {
         //TODO notify api error.
-        LoggerProvider.getLogger().d(LOGTAG, "an error happends " + retrofitError.getBody());
+        LoggerProvider.getLogger().d(LOGTAG, "an error happens " + retrofitError.getBody());
     }
 }
