@@ -55,7 +55,7 @@ class UserDataSourceImp implements UserDataSource, ApiResponseCallback<List<User
             Hipster hipster = new Hipster(user.getEmail());
             hipster.setName(user.getName().getFirst());
             hipster.setSurname(user.getName().getLast());
-            hipster.setAvatar(user.getPicture());
+            hipster.setAvatar(user.getPicture().getThumbnail());
 
             hipsters.add(hipster);
         }
